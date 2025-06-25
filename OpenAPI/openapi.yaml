@@ -1,0 +1,285 @@
+openapi: 3.0.3
+info:
+  title: Marketplace API
+  version: 1.0.0
+  description: API sederhana untuk Marketplace (User, Product, Transaction)
+
+servers:
+  - url: http://localhost:8080
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        seller_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        stock:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        buyer_id:
+          type: string
+        product_id:
+          type: string
+        quantity:
+          type: integer
+        total_price:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+paths:
+  /users:
+    get:
+      summary: List semua user
+      responses:
+        '200':
+          description: Daftar user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+    post:
+      summary: Tambah user baru
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User berhasil dibuat
+
+  /users/{id}:
+    get:
+      summary: Ambil detail user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detail user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+    put:
+      summary: Update user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User berhasil diupdate
+
+    delete:
+      summary: Hapus user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User berhasil dihapus
+
+  /products:
+    get:
+      summary: List semua produk
+      responses:
+        '200':
+          description: Daftar produk
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+
+    post:
+      summary: Tambah produk baru
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Produk berhasil dibuat
+
+  /products/{id}:
+    get:
+      summary: Ambil detail produk
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detail produk
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+    put:
+      summary: Update produk
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Produk berhasil diupdate
+
+    delete:
+      summary: Hapus produk
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Produk berhasil dihapus
+
+  /transactions:
+    get:
+      summary: List semua transaksi
+      responses:
+        '200':
+          description: Daftar transaksi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+
+    post:
+      summary: Tambah transaksi baru
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '201':
+          description: Transaksi berhasil dibuat
+
+  /transactions/{id}:
+    get:
+      summary: Ambil detail transaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detail transaksi
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+
+    put:
+      summary: Update transaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '200':
+          description: Transaksi berhasil diupdate
+
+    delete:
+      summary: Hapus transaksi
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Transaksi berhasil dihapus
+
