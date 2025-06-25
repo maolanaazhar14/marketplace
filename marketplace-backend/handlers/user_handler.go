@@ -61,7 +61,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Debug: Print credential yang diterima
 	fmt.Printf("Login attempt: email=%s\n", credentials.Email)
-	fmt.Printf("Password length: %s\n", credentials.Password)
+	fmt.Printf("Password: %s\n", credentials.Password)
 
 	// Validasi data wajib
 	if credentials.Email == "" || credentials.Password == "" {
