@@ -6,8 +6,6 @@ import (
 	"ApasihShop/backend/models"
 	"database/sql"
 	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
 	"regexp"
 
@@ -37,7 +35,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	).Scan(&user.ID)
 
 	if err != nil {
-		log.Println("Error saat insert user:", err)
 		http.Error(w, "Gagal membuat user baru", http.StatusInternalServerError)
 		return
 	}
@@ -59,13 +56,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Debug: Print credential yang diterima
-	fmt.Printf("Login attempt: email=%s\n", credentials.Email)
-	fmt.Printf("Password: %s\n", credentials.Password)
-
 	// Validasi data wajib
 	if credentials.Email == "" || credentials.Password == "" {
-		fmt.Println("Email atau password kosong")
 		http.Error(w, "Email dan password tidak boleh kosong", http.StatusBadRequest)
 		return
 	}
@@ -73,7 +65,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	// Validasi format email
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
 	if !emailRegex.MatchString(credentials.Email) {
-		fmt.Println("Format email tidak valid")
 		http.Error(w, "Format email tidak valid", http.StatusBadRequest)
 		return
 	}
@@ -93,13 +84,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Debug: Verifikasi format hash
-	fmt.Printf("Hash length: %d\n", len(user.PasswordHash))
-	fmt.Printf("Hash starts with: %s\n", user.PasswordHash[:6]) // Harus $2a$ atau $2b$
-
 	// Bandingkan password yang diinput dengan hash di DB
 	err = bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(credentials.Password))
-	fmt.Println(err)
 	if err != nil {
 		http.Error(w, "Email atau password salah", http.StatusUnauthorized)
 		return

@@ -1,0 +1,49 @@
+/* Styling untuk halaman laporan */
+.report-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 2rem;
+}
+
+.report-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2.5rem;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.report-card {
+  background: linear-gradient(145deg, #ffffff, #e6eef2);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.report-card:hover {
+  transform: scale(1.05);
+}
+
+.report-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #34495e;
+  font-weight: 500;
+}
+
+.report-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: #2c3e50;
+}
+
+.report-value.revenue {
+  color: #27ae60; /* Warna hijau untuk pendapatan */
+}

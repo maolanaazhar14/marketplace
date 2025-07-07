@@ -31,6 +31,8 @@ func main() {
 	api.HandleFunc("/transactions/buy", handlers.BuyProductHandler).Methods("POST")
 	api.HandleFunc("/reports/financial", handlers.GetFinancialReportHandler).Methods("GET")
 	// Tambahkan rute PUT dan DELETE untuk produk di sini jika diperlukan
+	api.HandleFunc("/products/{id}", handlers.UpdateProductHandler).Methods("PUT")
+	// api.HandleFunc("/products/{id}", handlers.DeleteProductHandler).Methods("DELETE")
 
 	// Konfigurasi CORS
 	c := cors.New(cors.Options{

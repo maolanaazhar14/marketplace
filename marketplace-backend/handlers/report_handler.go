@@ -17,8 +17,8 @@ func GetFinancialReportHandler(w http.ResponseWriter, r *http.Request) {
 			COALESCE(SUM(t.total_price), 0) AS total_revenue,
 			COALESCE(SUM(t.quantity), 0) AS total_items_sold,
 			COALESCE(COUNT(t.id), 0) AS total_transactions
-		FROM transactions t
-		JOIN products p ON t.product_id = p.id
+		FROM apasih.transactions t
+		JOIN apasih.products p ON t.product_id = p.id
 		WHERE p.seller_id = $1
 	`, sellerID).Scan(&report.TotalRevenue, &report.TotalItemsSold, &report.TotalTransactions)
 

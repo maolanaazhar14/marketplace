@@ -7,7 +7,7 @@ type User struct {
 	ID           string    `json:"id"`
 	Name         string    `json:"name"`
 	Email        string    `json:"email"`
-	PasswordHash string    `json:"-"` // Jangan kirim password hash ke client
+	PasswordHash string    `json:"password"` // Jangan kirim password hash ke client
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`
 }

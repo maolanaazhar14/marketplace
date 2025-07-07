@@ -1,0 +1,52 @@
+/* src/pages/MyProductsPage.css */
+
+.my-products-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.my-products-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.products-table th, .products-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.products-table th {
+  background-color: #f4f7f6;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.products-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.edit-button {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #f39c12;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.edit-button:hover {
+  background-color: #e67e22;
+}
